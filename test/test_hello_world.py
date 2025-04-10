@@ -1,7 +1,8 @@
 # test_hello_world.py
+from src.main import main
 
 
-def test_hello_world():
-    # Simple test to print "Hello, World!" and assert that it passes
-    print("Hello, World!")
-    assert True  # This will always pass
+def test_main():
+    """Test the main function."""
+    result = main()
+    assert result == "Hello World!"

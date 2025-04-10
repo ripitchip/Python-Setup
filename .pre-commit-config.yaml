@@ -22,8 +22,8 @@ repos:
   - repo: local
     hooks:
       - id: pytest
-        name: Run Pytest
-        entry: pytest
+        name: Run Pytest with Coverage
+        entry: bash -c 'export PYTHONPATH=$(pwd)/src && pytest --cov=src --cov-report=term-missing'
         language: system
         types: [python]
         pass_filenames: false

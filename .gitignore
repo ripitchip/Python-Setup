@@ -12,3 +12,6 @@ build
 
 #### MODEL ####
 model
+
+.coverage
+.pytest_cache
