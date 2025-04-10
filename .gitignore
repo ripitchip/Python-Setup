@@ -1,0 +1,14 @@
+#### PYTHON #####
+.env
+.venv
+__pycache__
+
+#### FORMATER ####
+.ruff_cache
+
+#### DOCS BUILD ####
+build
+
+#### MODEL ####
+model
+
