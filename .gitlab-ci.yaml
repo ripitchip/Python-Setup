@@ -1,0 +1,35 @@
+stages:
+  - lint
+  - security
+  - test
+
+# Linting: run Black and Ruff
+lint:
+  stage: lint
+  image: python:3.13
+  before_script:
+    - pip install black ruff
+  script:
+    - black --check --config ./pyproject.toml $(find src tests -type f -name '*.py')
+    - ruff check --fix $(find src tests -type f -name '*.py')
+
+# Security: run Bandit
+security:
+  stage: security
+  image: python:3.13
+  before_script:
+    - pip install bandit
+  script:
+    - bandit -r src tests
+
+# Testing: run Pytest
+test:
+  stage: test
+  image: python:3.13
+  before_script:
+    - pip install pytest
+  script:
+    - pytest --maxfail=1 --disable-warnings -q
+  only:
+    - main
+    - develop
