@@ -22,14 +22,14 @@ security:
   script:
     - bandit -r src tests
 
-# Testing: run Pytest
+# Testing: run Pytest with Coverage
 test:
   stage: test
   image: python:3.13
   before_script:
-    - pip install pytest
+    - pip install pytest pytest-cov # Install pytest and pytest-cov for coverage
   script:
-    - pytest --maxfail=1 --disable-warnings -q
+    - pytest --maxfail=1 --disable-warnings -q --cov=src --cov=tests --cov-fail-under=80 # Run tests and check coverage with a threshold of 80%
   only:
     - main
     - develop
