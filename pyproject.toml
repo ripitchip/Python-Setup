@@ -18,6 +18,9 @@ format = [
   "ruff",
   "black"
 ]
+tests = [
+    "pytest>=8.3.5",
+]
 
 [tool.uv]
 default-groups = "all"
