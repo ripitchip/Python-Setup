@@ -1,21 +1,31 @@
 repos:
   - repo: https://github.com/ambv/black
-    rev: stable
+    rev: 24.3.0 # You should run `pre-commit autoupdate` to get the actual latest tag
     hooks:
       - id: black
-        language_version: python3.11
+        language_version: python3.13
         args:
-          # - "."
           - "--config"
           - "./pyproject.toml"
         files: ^(src|tests)/.*\.(py|pyx|pyi)$
+        exclude: ^(?!main$|develop$).*$
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    # Ruff version.
     rev: v0.1.11
     hooks:
-      # Run the linter.
       - id: ruff
         args: [--fix]
         files: ^(src|tests)/.*\.(py|pyx|pyi)$
-        language_version: python3.11
+        language_version: python3.13
+        exclude: ^(?!main$|develop$).*$
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Run Pytest
+        entry: pytest
+        language: system
+        types: [python]
+        pass_filenames: false
+        always_run: true
+        exclude: ^(?!main$|develop$).*$
